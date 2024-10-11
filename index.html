@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gila and Michael Wedding Invitation </title>
+    <title>Start Button with Background Image and Audio Control</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow-x: hidden;
             background-color: #959387;
         }
 
@@ -19,7 +19,7 @@
             width: 100vw;
             height: 100vh;
             object-fit: cover;
-            visibility: hidden; /* Initially hidden */
+            visibility: hidden;
             position: absolute;
             top: 0;
             left: 0;
@@ -36,6 +36,7 @@
             justify-content: center;
             align-items: center;
             z-index: 4;
+            overflow: hidden;
         }
 
         /* Background image inside the overlay */
@@ -44,8 +45,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 80vw;
-            max-height: 80vh;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
             backdrop-filter: blur(10px);
             z-index: 5;
@@ -69,7 +70,7 @@
             font-size: 2.5vw;
             margin-bottom: 10px;
             font-family: Arial, sans-serif;
-            opacity: 0; /* Initially hidden */
+            opacity: 0;
         }
 
         .confirm-image, .map-image {
@@ -92,7 +93,7 @@
             width: 10vw;
             height: auto;
             z-index: 5;
-            display: none; /* Hidden initially */
+            display: none;
         }
 
         /* Play and Pause images */
@@ -103,7 +104,7 @@
             width: 5vw;
             height: auto;
             z-index: 6;
-            cursor: pointer; /* Make the play/pause image clickable */
+            cursor: pointer;
             display: none;
         }
 
@@ -126,6 +127,7 @@
         @media only screen and (max-width: 768px) {
             .start-button {
                 font-size: 4vw;
+                padding: 10px 20px;
             }
 
             .confirm-text, .map-text {
@@ -134,6 +136,47 @@
 
             .confirm-image, .map-image {
                 width: 25vw;
+            }
+
+            .layout-img {
+                width: 15vw;
+            }
+
+            .play-img, .pause-img {
+                width: 8vw;
+            }
+
+            .background-image {
+                width: 80vw;
+                height: auto;
+            }
+        }
+
+        /* Additional Media Queries for smaller phones */
+        @media only screen and (max-width: 480px) {
+            .start-button {
+                font-size: 5vw;
+                padding: 8px 16px;
+            }
+
+            .confirm-text, .map-text {
+                font-size: 4vw;
+            }
+
+            .confirm-image, .map-image {
+                width: 35vw;
+            }
+
+            .layout-img {
+                width: 20vw;
+            }
+
+            .play-img, .pause-img {
+                width: 10vw;
+            }
+
+            .background-image {
+                width: 90vw;
             }
         }
 

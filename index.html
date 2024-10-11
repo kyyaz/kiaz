@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Button with Background Image and Audio Control</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #959387;
+        }
+
+        /* Fullscreen video */
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            visibility: hidden; /* Initially hidden */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Container for the start button and background image */
+        .start-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 4;
+        }
+
+        /* Background image inside the overlay */
+        .background-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 100vw;
+            max-height: 100vh;
+            object-fit: contain;
+            backdrop-filter: blur(10px);
+            z-index: 5;
+        }
+
+
+        .confirm-container {
+            top: 200px;
+            position: absolute;
+            right: 80px;
+            text-align: center;
+        }
+
+        .map-container {
+            top: 330px;
+            position: absolute;
+            right: 70px;
+            text-align: center;
+        }
+
+        .confirm-text, .map-text {
+            font-size: 10px;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+            opacity: 0; /* Initially hidden */
+        }
+
+        /* Confirm image inside the overlay */
+        .confirm-image {
+            position: absolute;
+            top: 0px;
+            right: 25px;
+            width: 100px;
+            height: auto;
+            z-index: 5;
+            display: none;
+        }
+
+                /* Confirm image inside the overlay */
+        .map-image {
+            position: absolute;
+            top: 5px;
+            right: 30px;
+            width: 100px;
+            height: auto;
+            z-index: 5;
+            display: none;
+        }
+
+
+        .confirm-image:hover, .map-image:hover {
+            transform: scale(1.1);
+        }
+
+        /* Layout image */
+        .layout-img {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 60px;
+            height: auto;
+            z-index: 5;
+            display: none; /* Hidden initially */
+        }
+
+        /* Play and Pause images */
+        .play-img, .pause-img {
+            position: absolute;
+            top: 27px;
+            left: 29px;
+            width: 16px;
+            height: auto;
+            z-index: 6;
+            cursor: pointer; /* Make the play/pause image clickable */
+            display: none;
+        }
+
+        .start-button {
+            padding: 15px 30px;
+            background-color: #C5AB93;
+            color: black;
+            border: 2px solid #FFFCF7;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            font-size: 24px;
+            text-align: center;
+            font-family: "Times New Roman", Times, serif;
+            transition: transform 0.5s ease;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Video Element (Muted) -->
+<video id="myVideo" src="C:\Users\sherut.lap2\Desktop\Yahav\Website\FinalFR\data\Video11.mp4" muted loop></video>
+<!-- Video Loop (Muted) -->
+<video id="LVideo" src="C:\Users\sherut.lap2\Desktop\Yahav\Website\FinalFR\data\loop.mp4" muted loop></video>
+
+<!-- Start Button Overlay with Background Image -->
+<div class="start-overlay" id="startOverlay">
+    <img src="C:\Users\sherut.lap2\Desktop\Yahav\Website\FinalFR\data\zibiblue.png" class="background-image">
+    <button class="start-button" id="moveButton">Voir l’invitation</button>
+</div>
+
+<!-- Confirm and Map Button Containers -->
+<div class="confirm-container">
+    <div id="ConfirmText" class="confirm-text">Click under to approve arrival</div>
+    <a href="https://www.ungrandjour.com/fr/wedding-guila-michael/rsvp" target="_blank">
+        <img id="ConImage" src="C:\Users\sherut.lap2\Desktop\Yahav\Website\FinalFR\data\LastInv.png" alt="Click to Confirm Invitation" class="confirm-image">
+    </a>
+</div>
+
+<div class="map-container">
+    <div id="mapText" class="map-text">Click under to get arrival instructions</div>
+    <a href="https://maps.app.goo.gl/eE6QZdpEBsbeBGyf9" target="_blank">
+        <img id="MapImage" src="C:\Users\sherut.lap2\Desktop\Yahav\Website\FinalFR\data\map.png" alt="Click to get to the wedding" class="map-image">
+    </a>
+</div>
+
+<!-- Play and Pause Icons -->
+<img id="PlayImg" src="C:\Users\sherut.lap2\Desktop\Yahav\Website\FinalFR\data\PlayButton.png" class="play-img">
+<img id="PauseImg" src="C:\Users\sherut.lap2\Desktop\Yahav\Website\FinalFR\data\PauseButton.png" class="pause-img">
+
+<!-- Layout -->
+<img id="LayoutImg" src="C:\Users\sherut.lap2\Desktop\Yahav\Website\FinalFR\data\layout.png" class="layout-img">
+
+<!-- External Audio File -->
+<audio id="backgroundAudio" src="C:\Users\sherut.lap2\Desktop\Yahav\Website\FinalFR\data\BM.mp3" preload="auto"></audio>
+
+<script>
+   var ConfirmText = document.getElementById('ConfirmText');
+   var mapText = document.getElementById('mapText');
+   var MapImage = document.getElementById('MapImage');
+   var LayoutImg = document.getElementById('LayoutImg');
+   var PlayImg = document.getElementById('PlayImg');
+   var PauseImg = document.getElementById('PauseImg');
+   var ConImage = document.getElementById('ConImage');
+   var moveb = document.getElementById('moveButton');
+   var LVideo = document.getElementById("LVideo");
+   var myVideo = document.getElementById("myVideo");
+   var startOverlay = document.getElementById("startOverlay");
+   var backgroundAudio = document.getElementById("backgroundAudio");
+   var isAudioPlaying = true;
+   var isButtonClicked = false;
+
+   // Function to start the site and remove the overlay
+   function startSite() {
+       moveb.addEventListener('click', function() {
+           if (isButtonClicked) return;
+           isButtonClicked = true;
+
+           this.style.transform = 'translateX(65vw)'; 
+
+           setTimeout(function() {
+               startOverlay.style.display = "none";
+               myVideo.style.visibility = "visible";
+               LayoutImg.style.display = "block";
+               PauseImg.style.display = "block";
+               myVideo.play();
+               backgroundAudio.play();
+           }, 500);
+
+           setTimeout(function() {
+               ConImage.style.display = "block";
+               MapImage.style.display = "block";
+               ConfirmText.style.opacity = 1;
+               mapText.style.opacity = 1;
+               myVideo.pause();
+               LVideo.play();
+           }, 9500);
+       });
+   }
+
+   // Initialize the startSite function
+   startSite();
+
+   // Function to toggle audio control and change between play/pause icons
+   function toggleAudio() {
+       if (isAudioPlaying) {
+           backgroundAudio.pause();
+           PauseImg.style.display = "none";
+           PlayImg.style.display = "block";
+       } else {
+           backgroundAudio.play();
+           PlayImg.style.display = "none";
+           PauseImg.style.display = "block";
+       }
+       isAudioPlaying = !isAudioPlaying;
+   }
+
+   // Add event listeners for the play and pause images
+   PlayImg.addEventListener('click', toggleAudio);
+   PauseImg.addEventListener('click', toggleAudio);
+
+</script>
+
+</body>
+</html>
+A

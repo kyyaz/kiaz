@@ -141,6 +141,13 @@
 
         /* Media Queries for Mobile Devices */
         @media only screen and (max-width: 768px) {
+
+            video
+            {
+             object-fit: cover;
+            }
+
+            
             .start-button {
                 font-size: 4vw;
                 padding: 10px 20px;
@@ -165,11 +172,20 @@
             .background-image {
                 width: 80vw;
                 height: auto;
+                object-fit: contain;
+
             }
         }
 
         /* Additional Media Queries for smaller phones */
         @media only screen and (max-width: 480px) {
+             
+            video
+            {
+             object-fit: cover;
+            }
+
+            
             .start-button {
                 font-size: 5vw;
                 padding: 8px 16px;
@@ -193,6 +209,8 @@
 
             .background-image {
                 width: 90vw;
+                object-fit: contain;
+
             }
         }
 

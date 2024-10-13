@@ -14,17 +14,32 @@
             background-color: #959387;
         }
 
-               /* Fullscreen video */
+        
+/* Fullscreen video (without clipping) */
+video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    object-fit: contain; /* No cropping, video fits inside container */
+    z-index: 1;
+}
+
+
+        
+               /* Fullscreen video 
         video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             visibility: hidden; /* Initially hidden */
             position: absolute;
             top: 0;
             left: 0;
         }
-
+*/
         /* Container for the start button and background image */
         .start-overlay {
             position: absolute;
@@ -170,12 +185,16 @@
             }
 
             .background-image {
-                width: 80vw;
-                height: auto;
-                object-fit: contain;
+               max-width: 90vw; /* Make it a bit smaller on mobile screens to avoid too much empty space */
+               max-height: 90vh; /* Allow some flexibility in height */
+               object-fit: contain; /* Ensures image won't be cropped */
+                
 
             }
         }
+
+
+        
 
         /* Additional Media Queries for smaller phones */
         @media only screen and (max-width: 480px) {

@@ -14,22 +14,16 @@
             background-color: #959387;
         }
 
-
-video {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    clip-path: inset(10% 0 10% 0);
-    opacity: 0; /* Initially hidden */
-    position: absolute;
-    transition: opacity 0.5s ease-in-out; /* Smooth transition for fading in/out */
-    pointer-events: none; /* Prevent interaction while hidden */
-}
-
-video.visible {
-    opacity: 1; /* When visible, set opacity to 1 */
-    pointer-events: auto; /* Allow interaction when visible */
-}
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            clip-path: inset(10% 0 10% 0);
+            opacity: 0;
+            position: absolute;
+            transition: opacity 0.5s ease-in-out; /* Smooth transition for fading in/out */
+            pointer-events: none; /* Prevent interaction while hidden */
+        }
 
 
         /* Container for the start button and background image */
@@ -291,7 +285,8 @@ video.visible {
 
            setTimeout(function() {
                startOverlay.style.display = "none";
-                myVideo.classList.add('visible'); // Add the visible class to fade in
+               myVideo.style.pointerEvents = "auto";
+               myVideo.style.display = "none";
                LayoutImg.style.display = "block";
                PauseImg.style.display = "block";
                myVideo.play();

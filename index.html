@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gila and Michael Wedding Invitation </title>
+    <title>Gila and Michael Wedding Invitation</title>
     <style>
         body, html {
             margin: 0;
@@ -18,13 +18,11 @@
             width: 100%;
             height: 100%;
             object-fit: fill;
-            //clip-path: inset(10% 0 10% 0);
             opacity: 0;
-            position: absolute;
+            position: fixed;
             transition: opacity 0.5s ease-in-out; /* Smooth transition for fading in/out */
             pointer-events: none; /* Prevent interaction while hidden */
         }
-
 
         /* Container for the start button and background image */
         .start-overlay {
@@ -51,7 +49,6 @@
             backdrop-filter: blur(10px);
             z-index: 5;
         }
-
 
         .confirm-container {
             top: 200px;
@@ -85,7 +82,7 @@
             display: none;
         }
 
-                /* Confirm image inside the overlay */
+        /* Map image inside the overlay */
         .map-image {
             position: absolute;
             top: 5px;
@@ -95,7 +92,6 @@
             z-index: 5;
             display: none;
         }
-
 
         .confirm-image:hover, .map-image:hover {
             transform: scale(1.1);
@@ -139,16 +135,61 @@
             transition: transform 0.5s ease;
         }
 
+        /* Volume Control Styling */
+        .volume-control {
+            position: absolute;
+           // bottom: 20px;
+            top: 60px;
+            left: 20px;
+            width: 150px;
+            z-index: 7;
+            display: none; /* Initially hidden */
+        }
+
+
+/* Style for the thumb of the slider */
+.volume-control::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove default styling for WebKit browsers */
+    appearance: none; /* Remove default styling for other browsers */
+    background: grey; /* Color of the thumb */
+}
+
+.volume-control::-moz-range-thumb {
+    background: grey; /* Color of the thumb */
+}
+
+/* Additional styles for Firefox */
+.volume-control::-ms-thumb {
+    background: grey; /* Color of the thumb */
+}
+
+/* Track styling for Firefox */
+.volume-control::-moz-range-track {
+    background: grey; /* Color of the track */
+}
+  
+        .volume-percentage {
+          position: absolute;
+           top: 60px;
+           left: 70px;
+           font-size: 16px;
+           margin-left: 10px;
+           font-family: Arial, sans-serif;
+           color: white;
+           display: none; /* Initially hidden */
+           text-shadow:
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black;
+}
 
         /* Media Queries for Mobile Devices */
         @media only screen and (max-width: 768px) {
-
-            video
-            {
-             object-fit: cover;
+            video {
+                object-fit: cover;
             }
 
-            
             .start-button {
                 font-size: 4vw;
                 padding: 10px 20px;
@@ -171,26 +212,18 @@
             }
 
             .background-image {
-               max-width: 90vw; /* Make it a bit smaller on mobile screens to avoid too much empty space */
-               max-height: 90vh; /* Allow some flexibility in height */
-               object-fit: contain; /* Ensures image won't be cropped */
-                
-
+                max-width: 90vw; /* Make it a bit smaller on mobile screens to avoid too much empty space */
+                max-height: 90vh; /* Allow some flexibility in height */
+                object-fit: contain; /* Ensures image won't be cropped */
             }
         }
 
-
-        
-
         /* Additional Media Queries for smaller phones */
         @media only screen and (max-width: 480px) {
-             
-            video
-            {
-             object-fit: cover;
+            video {
+                object-fit: cover;
             }
 
-            
             .start-button {
                 font-size: 5vw;
                 padding: 8px 16px;
@@ -215,16 +248,18 @@
             .background-image {
                 width: 90vw;
                 object-fit: contain;
+            }
 
+            .volume-control {
+                width: 120px;
             }
         }
-
     </style>
 </head>
 <body>
 
 <!-- Video Element (Muted) -->
-<video id="myVideo" src="data/Video11.mp4" muted loop></video>
+<video id="myVideo" src="data/finalin.mp4" muted loop></video>
 <!-- Video Loop (Muted) -->
 <video id="LVideo" src="data/loop.mp4" muted loop></video>
 
@@ -259,6 +294,15 @@
 <!-- External Audio File -->
 <audio id="backgroundAudio" src="data/BM.mp3" preload="auto"></audio>
 
+<!-- Volume Control -->
+<div class="volume-control" id="volumeControlContainer">
+    <label for="volumeControl">Volume:</label>
+    <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1">
+ </div>
+
+ <span id="volumePercentage" class="volume-percentage">100%</span>
+
+
 <script>
    var ConfirmText = document.getElementById('ConfirmText');
    var mapText = document.getElementById('mapText');
@@ -272,8 +316,20 @@
    var myVideo = document.getElementById("myVideo");
    var startOverlay = document.getElementById("startOverlay");
    var backgroundAudio = document.getElementById("backgroundAudio");
+   var volumeControlContainer = document.getElementById('volumeControlContainer');
    var isAudioPlaying = true;
    var isButtonClicked = false;
+   var volumeControl = document.getElementById('volumeControl');
+   var volumePercentage = document.getElementById('volumePercentage');
+
+   // Set the initial volume of the audio
+   backgroundAudio.volume = volumeControl.value;
+
+   // Update the audio volume based on the slider value
+   volumeControl.addEventListener('input', function() {
+       backgroundAudio.volume = this.value;
+       volumePercentage.textContent = Math.round(this.value * 100) + '%';
+   });
 
    // Function to start the site and remove the overlay
    function startSite() {
@@ -281,14 +337,16 @@
            if (isButtonClicked) return;
            isButtonClicked = true;
 
-           this.style.transform = 'translateX(65vw)'; 
+           this.style.transform = 'translateX(65vw)';
 
            setTimeout(function() {
                startOverlay.style.display = "none";
                myVideo.style.pointerEvents = "auto";
-               myVideo.style.display = "none";
+               myVideo.style.opacity = 1;
+               volumePercentage.style.display = "block";
                LayoutImg.style.display = "block";
                PauseImg.style.display = "block";
+               volumeControlContainer.style.display = "block"; // Show the volume control
                myVideo.play();
                backgroundAudio.play();
            }, 500);

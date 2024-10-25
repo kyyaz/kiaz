@@ -304,7 +304,7 @@
 
 <!-- Start Button Overlay with Background Image -->
 <div class="start-overlay" id="startOverlay">
-    <img src="data/zibiblue.png" class="background-image">
+    <img src="data/zibiblue.png" class="background-image"  id="backgroundImage">>
     <button class="start-button" id="moveButton">Voir l’invitation</button>
 </div>
 
@@ -360,6 +360,16 @@
    var isButtonClicked = false;
    var volumeControl = document.getElementById('volumeControl');
    var volumePercentage = document.getElementById('volumePercentage');
+   const backgroundImage = document.getElementById("backgroundImage");
+
+
+   if (window.innerWidth <= 600) {
+        // Path for mobile devices
+        backgroundImage.src = "data/blue.png";
+    } else {
+        // Path for larger devices
+        backgroundImage.src = "data/zibiblue.png";
+    }
 
    // Set the initial volume of the audio
    backgroundAudio.volume = volumeControl.value;

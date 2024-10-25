@@ -9,9 +9,14 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%;
+           // height: 100%;
             overflow: hidden;
-            background-color: #75929A;
+           // background-color: #75929A;
+            background-image: url('data/zibiblue.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
                 //#959387;
         }
 
@@ -38,7 +43,7 @@
             z-index: 4;
         }
 
-        /* Background image inside the overlay */
+        /* Background image inside the overlay 
         .background-image {
             position: absolute;
             top: 50%;
@@ -50,7 +55,7 @@
             backdrop-filter: blur(10px);
             z-index: 5;
         }
-
+*/
         .confirm-container {
             top: 200px;
             position: absolute;
@@ -266,7 +271,7 @@
 
 <!-- Start Button Overlay with Background Image -->
 <div class="start-overlay" id="startOverlay">
-    <img src="data/zibiblue.png" class="background-image">
+    //<img src="data/zibiblue.png" class="background-image">
     <button class="start-button" id="moveButton">Voir l’invitation</button>
 </div>
 

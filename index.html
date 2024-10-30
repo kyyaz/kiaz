@@ -23,6 +23,19 @@
                 //#959387;
         }
 
+        #timer {
+            position: absolute; /* Use absolute positioning */
+            top: 60%; /* 150px from the top of the viewport */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            font-size: 2rem;
+            color: #C5AB93; /* Timer color */
+            background-color: #fff; /* Optional: background for visibility */
+            padding: 20px; /* Optional: add padding */
+            border-radius: 10px; /* Optional: rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
+       }
+
         video {
             width: 100%;
             height: 100%;
@@ -133,7 +146,7 @@
 
         .start-button {
             position: absolute;
-            top: 60%;   
+            top: 70%;   
             left: 50%; 
             transform: translateX(-50%); 
             padding: 15px 30px;
@@ -348,6 +361,7 @@
 
  <span id="volumePercentage" class="volume-percentage">100%</span>
 
+ <div id="timer">00d 00h 00m 00s</div>
 
 <script>
    var ConfirmText = document.getElementById('ConfirmText');
@@ -369,6 +383,31 @@
    var volumePercentage = document.getElementById('volumePercentage');
    const backgroundImage = document.getElementById("backgroundImage");
 
+// timer
+    // Target date and time: December 30, 2024, at 6 PM
+    const targetDate = new Date('2024-12-30T18:00:00'); // Adjust the year if needed
+
+    const countdown = setInterval(() => {
+        const now = new Date(); // Current date and time
+        const timeDifference = targetDate - now; // Difference in milliseconds
+
+        // Calculate days, hours, minutes, and seconds
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        // Update the timer display
+        document.getElementById('timer').textContent = 
+            `${String(days).padStart(2, '0')}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+
+        // If the countdown is finished, display a message
+        if (timeDifference <= 0) {
+            clearInterval(countdown);
+            document.getElementById('timer').textContent = 'Time is up!';
+        }
+    }, 1000); // Update every second
+//end of timer
 /*
    if (window.innerWidth <= 600) {
         // Path for mobile devices

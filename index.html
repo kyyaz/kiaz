@@ -29,7 +29,7 @@
             left: 50%;
             transform: translateX(-50%); /* Center horizontally */
             font-size: 2rem;
-            color: #C5AB93; /* Timer color */
+            color: black;//#C5AB93; /* Timer color */
             background-color: #F2F1ED;; /* Optional: background for visibility */
             padding: 8px; /* Optional: add padding */
             border-radius: 10px; /* Optional: rounded corners */
@@ -404,7 +404,9 @@
 
         // Update the timer display
         document.getElementById('timer').textContent = 
-            `${String(days).padStart(2, '0')}Days ${String(hours).padStart(2, '0')}Hours ${String(minutes).padStart(2, '0')}Minutes ${String(seconds).padStart(2, '0')}Seconds`;
+              `${String(days).padStart(2, '0')} ${String(hours).padStart(2, '0')} ${String(minutes).padStart(2, '0')} ${String(seconds).padStart(2, '0')}<br>Days Hours Minutes Seconds`;
+            
+           // `${String(days).padStart(2, '0')}Days ${String(hours).padStart(2, '0')}Hours ${String(minutes).padStart(2, '0')}Minutes ${String(seconds).padStart(2, '0')}Seconds`;
 
         // If the countdown is finished, display a message
         if (timeDifference <= 0) {

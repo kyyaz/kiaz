@@ -298,7 +298,7 @@
 <body>
 
 <!-- Video Element (Muted) -->
-<video id="myVideo" muted loop></video>    
+<video id="myVideo" src="data/finalin.mp4" muted loop></video>
 <!-- Video Loop (Muted) -->
 <video id="LVideo" src="data/loop.mp4" muted loop></video>
 
@@ -360,17 +360,15 @@
    var isButtonClicked = false;
    var volumeControl = document.getElementById('volumeControl');
    var volumePercentage = document.getElementById('volumePercentage');
-   const backgroundImage = document.getE'lementById("backgroundImage");
+   const backgroundImage = document.getElementById("backgroundImage");
 
 
    if (window.innerWidth <= 600) {
         // Path for mobile devices
         backgroundImage.src = "data/blue.jpeg";
-        myVideo.src="data/videophone.mp4";
     } else {
         // Path for larger devices
         backgroundImage.src = "data/zibiblue.png";
-        myVideo.src="data/finalin.mp4";
     }
 
    // Set the initial volume of the audio

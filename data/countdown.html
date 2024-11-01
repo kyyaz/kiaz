@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer Example</title>
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style>
+        .timer-container {
+            display: flex; /* Use flexbox to align items in a row */
+            justify-content: center; /* Center the timer horizontally */
+           align-items: center; /* Center the timer vertically */
+            height: 153vh; /* Full viewport height */
+            position: relative; /* Positioning context for absolute positioning of children */
+        }
+
+        .timer {
+            position: relative; /* Allows absolute positioning of time segments */
+            font-family: 'Dancing Script', cursive; /* Apply Dancing Script font */
+            font-size: 2rem;
+        }
+
+        .time {
+            position: absolute; /* Position elements absolutely */
+            text-align: center; /* Center text within the time segments */
+            width: 40px; /* Fixed width for days, hours, minutes, and seconds */
+        }
+
+        /* Positioning each time segment explicitly */
+        #days {
+            left: -172px; /* Fixed position for days */
+        }
+
+        #hours {
+            left: -68px /* Adjust this value for gap after days */
+        }
+
+        #minutes {
+            left: 37px; /* Adjust this value for gap after hours */
+        }
+
+        #seconds {
+            left: 141px; /* Adjust this value for gap after minutes */
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <div class="timer">
+            <div class="time" id="days">00</div>
+            <div class="time" id="hours">00</div>
+            <div class="time" id="minutes">00</div>
+            <div class="time" id="seconds">00</div>
+        </div>
+    </div>
+
+    <script>
+        function updateTimer() {
+            const targetDate = new Date('2024-12-30T18:00:00'); // Target date: December 30, 2024, 6 PM
+            const now = new Date(); // Current date and time
+            const totalSeconds = Math.floor((targetDate - now) / 1000); // Calculate the total seconds until the target date
+
+            if (totalSeconds < 0) {
+                // If the target date has passed, display 00:00:00:00
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                clearInterval(interval); // Stop the timer
+                return; // Exit the function
+            }
+
+            const days = String(Math.floor(totalSeconds / 86400)).padStart(2, '0'); // 86400 seconds in a day
+            const hours = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, '0');
+            const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+            const seconds = String(totalSeconds % 60).padStart(2, '0');
+            
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+
+        const interval = setInterval(updateTimer, 1000); // Update the timer every second
+    </script>
+</body>
+</html>

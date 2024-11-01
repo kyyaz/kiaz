@@ -24,53 +24,7 @@
                 //#959387;
         }
 
-        #timer {
-            position: absolute; /* Use absolute positioning */
-            top: 78%; /* 150px from the top of the viewport */
-            left: 600px;
-            transform: translateX(-50%); /* Center horizontally */
-            font-size: 2rem;
-            color: black;//#C5AB93; /* Timer color */
-            //background-color: #F2F1ED;; /* Optional: background for visibility */
-           // background-color: rgba(242, 241, 237, 0.5);
-           // padding: 8px; /* Optional: add padding */
-           // border-radius: 10px; /* Optional: rounded corners */
-            z-index: 100;
-            font-family: 'Dancing Script', cursive;
-            font-weight: 500; /* Optional: Use bold weight */
-       }
-
-
-
-        .time-unit {
-            display: inline-block; /* Allow each time unit to maintain its own width */
-            width: 50px; /* Set a fixed width (adjust as necessary) */
-            top: 77%; /* Align all units at the same top */
-            font-size: 2rem; /* Consistent font size */
-            color: black; /* Change this to your preferred color */
-            font-family: 'Dancing Script', cursive; /* Font family */
-            font-weight: 500; /* Font weight */
-            z-index: 100;
-            background: none; /* Ensure no background is set */
-            padding: 0; /* Remove any padding */
-            margin: 0; /* Ensure no default margin */
-        }
-
-        #days {
-            margin-right: 20px; /* Position days at 50% from the left */
-        }
-
-        #hours {
-            margin-right: 15px; /* Position hours at 55% from the left */
-        }
-
-        #minutes {
-            margin-right: 10px; /* Position minutes at 60% from the left */
-        }
-
-        #seconds {
-        }
-
+       
         
 
         /* timer image */
@@ -364,6 +318,9 @@
 </head>
 <body>
 
+<iframe src="countdown.html" width="100%" height="100%" style="position: absolute; top: 0; left: 0; z-index: 10;">
+</iframe>
+
 <!-- Video Element (Muted) -->
 <video id="myVideo" src="data/finalin.mp4" muted loop></video>
 <!-- Video Loop (Muted) -->
@@ -408,16 +365,10 @@
 
  <span id="volumePercentage" class="volume-percentage">100%</span>
 
-<div id="timer">
-    <span class="time-unit" id="days">00</span>
-    <span class="time-unit" id="hours">00</span>
-    <span class="time-unit" id="minutes">00</span>
-    <span class="time-unit" id="seconds">00</span>
-</div>
     
     
     <!-- timer pic -->
-<img id="timerImg" src="data/timerfrance.png" class="timer-image">
+<img id="timerImg" src="timerfrance.png" class="timer-image">
 
 
 <script>
@@ -440,54 +391,6 @@
    var volumePercentage = document.getElementById('volumePercentage');
    const backgroundImage = document.getElementById("backgroundImage");
 /*
-// timer
-    // Target date and time: December 30, 2024, at 6 PM
-    const targetDate = new Date('2024-12-30T18:00:00'); // Adjust the year if needed
-
-    const countdown = setInterval(() => {
-        const now = new Date(); // Current date and time
-        const timeDifference = targetDate - now; // Difference in milliseconds
-
-        // Calculate days, hours, minutes, and seconds
-        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-        // Update the timer display
-    document.getElementById('timer').innerHTML = 
-        `&nbsp;&nbsp;${String(days).padStart(2, '0')}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${String(hours).padStart(2, '0')}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${String(minutes).padStart(2, '0')}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${String(seconds).padStart(2, '0')}<br>
-        `;
-           // `${String(days).padStart(2, '0')}Days ${String(hours).padStart(2, '0')}Hours ${String(minutes).padStart(2, '0')}Minutes ${String(seconds).padStart(2, '0')}Seconds`;
-
-        // If the countdown is finished, display a message
-        if (timeDifference <= 0) {
-            clearInterval(countdown);
-            document.getElementById('timer').textContent = 'Time is up!';
-        }
-    }, 1000); // Update every second
-//end of timer
-*/
-  // Target date and time: December 30, 2024, at 6 PM
-    const targetDate = new Date('2024-12-30T18:00:00'); // Adjust the year if needed
-
-const countdown = setInterval(() => {
-    const now = new Date(); // Current date and time
-    const timeDifference = targetDate - now; // Difference in milliseconds
-
-    // Calculate days, hours, minutes, and seconds
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-    // Update the timer display with individual spans
-    document.getElementById('days').innerHTML = String(days).padStart(2, '0');
-    document.getElementById('hours').innerHTML = String(hours).padStart(2, '0');
-    document.getElementById('minutes').innerHTML = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').innerHTML = String(seconds).padStart(2, '0');
-});
-
 
     
 /*

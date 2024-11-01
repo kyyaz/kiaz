@@ -23,7 +23,7 @@
             */
                 //#959387;
         }
-
+/*
         #timer {
             position: absolute; /* Use absolute positioning */
             top: 77%; /* 150px from the top of the viewport */
@@ -34,12 +34,44 @@
             background-color: #F2F1ED;; /* Optional: background for visibility */
             padding: 8px; /* Optional: add padding */
             border-radius: 10px; /* Optional: rounded corners */
-           // border: 1px solid black;
-            //box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
             z-index: 10;
             font-family: 'Dancing Script', cursive;
             font-weight: 500; /* Optional: Use bold weight */
        }
+
+*/
+#timer {
+    position: absolute; /* Make the timer container absolute */
+    top: 77%; /* Keep the same top position for all */
+    width: 100%; /* Ensure it spans the full width for positioning */
+    text-align: center; /* Center the timer content */
+}
+.time-unit {
+    position: absolute; /* Make each time unit absolute */
+    top: 0; /* Align all units at the same top */
+    font-size: 2rem; /* Consistent font size */
+    color: black; /* Change this to your preferred color */
+    font-family: 'Dancing Script', cursive; /* Font family */
+    font-weight: 500; /* Font weight */
+}
+
+#days {
+    left: 50%; /* Position days at 50% from the left */
+}
+
+#hours {
+    left: 55%; /* Position hours at 55% from the left */
+}
+
+#minutes {
+    left: 60%; /* Position minutes at 60% from the left */
+}
+
+#seconds {
+    left: 65%; /* Position seconds at 65% from the left */
+}
+
+        
 
         /* timer image */
         .timer-image {
@@ -376,8 +408,15 @@
 
  <span id="volumePercentage" class="volume-percentage">100%</span>
 
- <div id="timer">
-     &nbsp;&nbsp;00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00
+// <div id="timer">
+//     &nbsp;&nbsp;00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00
+//</div>
+
+<div id="timer">
+    <span class="time-unit" id="days"></span> days
+    <span class="time-unit" id="hours"></span> hours
+    <span class="time-unit" id="minutes"></span> minutes
+    <span class="time-unit" id="seconds"></span> seconds
 </div>
     
     
@@ -404,7 +443,7 @@
    var volumeControl = document.getElementById('volumeControl');
    var volumePercentage = document.getElementById('volumePercentage');
    const backgroundImage = document.getElementById("backgroundImage");
-
+/*
 // timer
     // Target date and time: December 30, 2024, at 6 PM
     const targetDate = new Date('2024-12-30T18:00:00'); // Adjust the year if needed
@@ -432,6 +471,29 @@
         }
     }, 1000); // Update every second
 //end of timer
+*/
+  // Target date and time: December 30, 2024, at 6 PM
+    const targetDate = new Date('2024-12-30T18:00:00'); // Adjust the year if needed
+
+const countdown = setInterval(() => {
+    const now = new Date(); // Current date and time
+    const timeDifference = targetDate - now; // Difference in milliseconds
+
+    // Calculate days, hours, minutes, and seconds
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+    // Update the timer display with individual spans
+    document.getElementById('days').innerHTML = String(days).padStart(2, '0');
+    document.getElementById('hours').innerHTML = String(hours).padStart(2, '0');
+    document.getElementById('minutes').innerHTML = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').innerHTML = String(seconds).padStart(2, '0');
+});
+
+
+    
 /*
    if (window.innerWidth <= 600) {
         // Path for mobile devices

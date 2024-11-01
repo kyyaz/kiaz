@@ -25,7 +25,7 @@
         }
 
         #timer {
-            position: relative; /* Use absolute positioning */
+            position: absolute; /* Use absolute positioning */
             top: 77%; /* 150px from the top of the viewport */
             transform: translateX(-50%); /* Center horizontally */
             font-size: 2rem;
@@ -42,7 +42,7 @@
 
 
         .time-unit {
-            position: absolute; /* Make each time unit absolute */
+            position: relative; /* Make each time unit absolute */
             top: 77%; /* Align all units at the same top */
             font-size: 2rem; /* Consistent font size */
             color: black; /* Change this to your preferred color */
@@ -52,19 +52,18 @@
         }
 
         #days {
-            left: 50%; /* Position days at 50% from the left */
+            margin-right: 20px; /* Position days at 50% from the left */
         }
 
         #hours {
-            left: 55%; /* Position hours at 55% from the left */
+            margin-right: 15px; /* Position hours at 55% from the left */
         }
 
         #minutes {
-            left: 60%; /* Position minutes at 60% from the left */
+            margin-right: 10px; /* Position minutes at 60% from the left */
         }
 
         #seconds {
-            left: 65%; /* Position seconds at 65% from the left */
         }
 
         

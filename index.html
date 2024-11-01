@@ -23,7 +23,7 @@
             */
                 //#959387;
         }
-/*
+
         #timer {
             position: absolute; /* Use absolute positioning */
             top: 77%; /* 150px from the top of the viewport */
@@ -39,37 +39,33 @@
             font-weight: 500; /* Optional: Use bold weight */
        }
 
-*/
-#timer {
-    position: absolute; /* Make the timer container absolute */
-    top: 77%; /* Keep the same top position for all */
-    width: 100%; /* Ensure it spans the full width for positioning */
-    text-align: center; /* Center the timer content */
-}
-.time-unit {
-    position: absolute; /* Make each time unit absolute */
-    top: 0; /* Align all units at the same top */
-    font-size: 2rem; /* Consistent font size */
-    color: black; /* Change this to your preferred color */
-    font-family: 'Dancing Script', cursive; /* Font family */
-    font-weight: 500; /* Font weight */
-}
 
-#days {
-    left: 50%; /* Position days at 50% from the left */
-}
 
-#hours {
-    left: 55%; /* Position hours at 55% from the left */
-}
+        .time-unit {
+            position: absolute; /* Make each time unit absolute */
+            top: 77%; /* Align all units at the same top */
+            font-size: 2rem; /* Consistent font size */
+            color: black; /* Change this to your preferred color */
+            font-family: 'Dancing Script', cursive; /* Font family */
+            font-weight: 500; /* Font weight */
+            z-index: 10;
+        }
 
-#minutes {
-    left: 60%; /* Position minutes at 60% from the left */
-}
+        #days {
+            left: 50%; /* Position days at 50% from the left */
+        }
 
-#seconds {
-    left: 65%; /* Position seconds at 65% from the left */
-}
+        #hours {
+            left: 55%; /* Position hours at 55% from the left */
+        }
+
+        #minutes {
+            left: 60%; /* Position minutes at 60% from the left */
+        }
+
+        #seconds {
+            left: 65%; /* Position seconds at 65% from the left */
+        }
 
         
 

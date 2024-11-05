@@ -251,6 +251,18 @@
 
  @media (width: 1440px)   
 {
+
+         .timer {
+            height: 159vh; /* Full viewport height */
+            display: flex; /* Use flexbox to align items in a row */
+            justify-content: center; /* Center the timer horizontally */
+            align-items: center; /* Center the timer vertically */
+            position: absolute; /* Allows absolute positioning of time segments */
+            font-family: 'Dancing Script', cursive; /* Apply Dancing Script font */
+            font-size: 2rem;
+            z-index: 100;
+        }
+    
         /* Positioning each time segment explicitly */
         #days {
             left: 540px; /* Fixed position for days */

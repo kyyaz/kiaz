@@ -147,6 +147,7 @@
             position: absolute;
             left: 60px
             width: 100px;
+            height: auto;
             z-index: 5;
             display: none;
         }
@@ -197,7 +198,7 @@
             transition: transform 0.5s ease;
         }
 
-        /* Volume Control Styling 
+        /* Volume Control Styling */
         .volume-control {
             position: absolute;
            // bottom: 20px;
@@ -207,9 +208,9 @@
             z-index: 7;
             display: none; /* Initially hidden */
         }
-*/
 
-/* Style for the thumb of the slider 
+
+/* Style for the thumb of the slider */
 .volume-control::-webkit-slider-thumb {
     -webkit-appearance: none; /* Remove default styling for WebKit browsers */
     appearance: none; /* Remove default styling for other browsers */
@@ -245,7 +246,7 @@
     -1px  1px 0 black,
      1px  1px 0 black;
 }
-*/
+
  @media (width: 1440px)   
 {
 
@@ -361,82 +362,6 @@
    var volumePercentage = document.getElementById('volumePercentage');
    const backgroundImage = document.getElementById("backgroundImage");
     
-
-//from % to vh/vw
-function convertPositionToVhVw(containerSelector, elementSelector, topPercent, leftPercent) {
-    // Select the container and element
-    const container = document.querySelector(containerSelector);
-    const element = document.querySelector(elementSelector);
-
-    // Get the viewport height and width
-    const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
-
-    // Get the container dimensions
-    const containerHeight = container.offsetHeight;
-    const containerWidth = container.offsetWidth;
-
-    // Calculate the top and left values in vh and vw
-    const topVh = (containerHeight * (topPercent / 100)) / viewportHeight * 100;
-    const leftVw = (containerWidth * (leftPercent / 100)) / viewportWidth * 100;
-
-    // Apply the calculated vh and vw values to the element
-    element.style.top = `${topVh}vh`;
-    element.style.left = `${leftVw}vw`;
-}
-
-// Apply to .start-button with 60% top and 50% left
-convertPositionToVhVw("body", ".start-button", 60, 50);
-
-
-//from px to vh/vw left
-function convertPxToVw(elementSelector, leftPx) {
-    // Select the element
-    const element = document.querySelector(elementSelector);
-
-    // Get the viewport height and width
-    const viewportWidth = window.innerWidth;
-
-    // Convert px values to vh
-    const leftVw = (leftPx / viewportWidth) * 100;
-
-    // Apply the calculated vh and vw values to the element
-    element.style.left = `${leftVw}vw`;
-}
-
-// Example usage for .start-button with top and left in px
-convertPxToVw("#days", 460);
-convertPxToVw("#hours", 564);
-convertPxToVw("#minutes", 668)
-convertPxToVw("#seconds", 777);
-
-
-
-
-function pxToVhVw(pxValue, unit) {
-    // Get the viewport height and width
-    const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
-
-    // Convert based on specified unit
-    if (unit === 'vh') {
-        return (pxValue / viewportHeight) * 100 + 'vh';
-    } else if (unit === 'vw') {
-        return (pxValue / viewportWidth) * 100 + 'vw';
-    } else {
-        throw new Error("Invalid unit. Use 'vh' or 'vw'.");
-    }
-}
-
-// Example usage
-//const leftInVw = pxToVhVw(640, 'vw'); // Converts 640px to vw
-
-
-
-
-
-
-
 
    // Set the initial volume of the audio
    backgroundAudio.volume = volumeControl.value;
